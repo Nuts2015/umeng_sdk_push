@@ -4,8 +4,8 @@ import "github.com/zhuxiujia/umeng-sdk-push"
 
 func main() {
 	os := 1
-	if os == go_umeng.IOS {
-		//go_umeng.NewUnicastIOS("恭喜你，你的作品被添加到首页！", "", go_umeng.UmengAccount{
+	if os == umeng_sdk_push.IOS {
+		//umeng_sdk_push.NewUnicastIOS("恭喜你，你的作品被添加到首页！", "", umeng_sdk_push.UmengAccount{
 		//	APP_KEY:           "",
 		//	APP_MASTER_SECRET: "",
 		//})

@@ -1,4 +1,4 @@
-package go_umeng
+package umeng_sdk_push
 /*
  *全局配置
  */
