@@ -3,6 +3,7 @@ package umeng_sdk_push
 import (
 	"strconv"
 	"time"
+	"log"
 )
 
 type UnicastIOS struct {
@@ -54,5 +55,6 @@ func SendIOSCustomizedcast(alias string,aliasType string,msg string,account Umen
 	data.Timestamp = strconv.Itoa(int(time.Now().Unix()))
 	data.Type = Customizedcast
 	unicast.data = data
-	unicast.send()
+	result,_:=unicast.send()
+	log.Println(result)
 }

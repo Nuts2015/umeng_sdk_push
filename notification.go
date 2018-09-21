@@ -32,12 +32,13 @@ type UmengNotification struct {
 	data            *UmengNotificationData
 }
 
-func (this *UmengNotification) send() error {
+func (this *UmengNotification) send() (UmengResult,error) {
+	var result UmengResult
 	url := this.host + this.postPath
 	postBody, err := json.Marshal(this.data)
 	if err != nil {
 		log.Println(err.Error())
-		return err
+		return result,err
 	}
 	sign := MD5("POST" + url + string(postBody) + this.appMasterSecret)
 	url = url + "?sign=" + sign
@@ -48,13 +49,13 @@ func (this *UmengNotification) send() error {
 	}()
 	if err != nil {
 		log.Println(err.Error())
-		return err
+		return result,err
 	}
 	content, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Println(err.Error())
-		return err
+		return result,err
 	}
-	log.Println(string(content))
-	return nil
+	json.Unmarshal(content,&result)
+	return result,nil
 }
