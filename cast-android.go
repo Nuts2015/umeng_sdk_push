@@ -3,14 +3,13 @@ package umeng_sdk_push
 import (
 	"strconv"
 	"time"
-	"log"
 )
 
 type UnicastAndroid struct {
 	NotificationAndroid
 }
 
-func NewAndroidUnicast(textMessage string, deviceToken string,account UmengAccount) (UmengResult,error) {
+func NewAndroidUnicast(textMessage string, deviceToken string, account UmengAccount) (UmengResult, error) {
 	unicast := &UnicastAndroid{
 		NotificationAndroid{},
 	}
@@ -35,13 +34,10 @@ func NewAndroidUnicast(textMessage string, deviceToken string,account UmengAccou
 	data.Timestamp = strconv.Itoa(int(time.Now().Unix()))
 	data.Type = Unicast
 	unicast.data = data
-
-	result,error:=unicast.send()
-	log.Println(result)
-	return result,error
+	return unicast.send()
 }
 
-func SendAndroidCustomizedcast(alias string,aliasType string,msg string,account UmengAccount)  (UmengResult,error){
+func SendAndroidCustomizedcast(alias string, aliasType string, msg string, account UmengAccount) (UmengResult, error) {
 	unicast := &UnicastAndroid{
 		NotificationAndroid{},
 	}
@@ -61,12 +57,11 @@ func SendAndroidCustomizedcast(alias string,aliasType string,msg string,account 
 	data := &UmengNotificationData{}
 	data.Payload = payload
 	data.AppKey = account.APP_KEY
-	data.Alias=alias
-	data.AliasType=aliasType
+	data.Alias = alias
+	data.AliasType = aliasType
 	data.ProductionMode = true
 	data.Timestamp = strconv.Itoa(int(time.Now().Unix()))
 	data.Type = Unicast
 	unicast.data = data
-	result,error:=unicast.send()
-	return result,error
+	return unicast.send()
 }

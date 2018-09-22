@@ -9,7 +9,7 @@ func main() {
 		//	APP_KEY:           "",
 		//	APP_MASTER_SECRET: "",
 		//})
-		umeng_sdk_push.SendIOSCustomizedcast("","phone","恭喜你，你的作品被添加到首页！", umeng_sdk_push.UmengAccount{
+		umeng_sdk_push.SendIOSCustomizedcast("", "phone", "恭喜你，你的作品被添加到首页！", umeng_sdk_push.UmengAccount{
 			APP_KEY:           "",
 			APP_MASTER_SECRET: "",
 		})

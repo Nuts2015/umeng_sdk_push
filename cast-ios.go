@@ -3,14 +3,13 @@ package umeng_sdk_push
 import (
 	"strconv"
 	"time"
-	"log"
 )
 
 type UnicastIOS struct {
 	NotificationIOS
 }
 
-func NewUnicastIOS(textMessage string, deviceToken string,account UmengAccount) {
+func NewUnicastIOS(textMessage string, deviceToken string, account UmengAccount) (UmengResult, error) {
 	unicast := &UnicastIOS{
 		NotificationIOS{},
 	}
@@ -30,11 +29,11 @@ func NewUnicastIOS(textMessage string, deviceToken string,account UmengAccount) 
 	data.Timestamp = strconv.Itoa(int(time.Now().Unix()))
 	data.Type = Unicast
 	unicast.data = data
-	unicast.send()
+	return unicast.send()
 }
 
 //根据别名发送
-func SendIOSCustomizedcast(alias string,aliasType string,msg string,account UmengAccount)  {
+func SendIOSCustomizedcast(alias string, aliasType string, msg string, account UmengAccount) (UmengResult, error) {
 	unicast := &UnicastIOS{
 		NotificationIOS{},
 	}
@@ -49,12 +48,11 @@ func SendIOSCustomizedcast(alias string,aliasType string,msg string,account Umen
 	data := &UmengNotificationData{}
 	data.Payload = payload
 	data.AppKey = account.APP_KEY
-	data.Alias=alias
-	data.AliasType=aliasType
+	data.Alias = alias
+	data.AliasType = aliasType
 	data.ProductionMode = true
 	data.Timestamp = strconv.Itoa(int(time.Now().Unix()))
 	data.Type = Customizedcast
 	unicast.data = data
-	result,_:=unicast.send()
-	log.Println(result)
+	return unicast.send()
 }

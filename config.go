@@ -1,4 +1,5 @@
 package umeng_sdk_push
+
 /*
  *全局配置
  */
@@ -7,6 +8,7 @@ const (
 	UPLOAD_PATH = "/upload"
 	POST_PATH   = "/api/send"
 )
+
 //after open
 const (
 	GO_APP      = "go_app"
@@ -28,16 +30,15 @@ const (
 )
 
 //message type 消息类型，如定向发送
-const(
-	Unicast = "unicast"
-	Broadcast= "broadcast"
+const (
+	Unicast        = "unicast"
+	Broadcast      = "broadcast"
 	Customizedcast = "customizedcast"
-	Filecast = "filecast"
-	Groupcast = "groupcast"
-
+	Filecast       = "filecast"
+	Groupcast      = "groupcast"
 )
 
 type UmengAccount struct {
-	APP_KEY        string
+	APP_KEY           string
 	APP_MASTER_SECRET string
 }
